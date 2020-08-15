@@ -1,12 +1,17 @@
 #!/usr/bin/env python3
 
+import sys
+
+if len(sys.argv) != 3:
+    print("example of usage: ./main.py old.txt new.txt")
+
 oldDomains = []
-with open('lists/lista-processo-liberacao.2020.6.txt') as domains:
+with open(sys.argv[1]) as domains:
     for domain in domains:
         oldDomains.append(domain.rstrip())
 
 newDomains = []
-with open('lists/lista-processo-liberacao.2020.7.txt') as domains:
+with open(sys.argv[2]) as domains:
     for domain in domains:
         newDomains.append(domain.rstrip())
 
