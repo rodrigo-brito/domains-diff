@@ -5,15 +5,15 @@
 # Usage
 
 ```
-./main.py lists/lista-processo-liberacao.2020.7.txt lists/lista-processo-liberacao.2020.8.txt
+./main.py --file lists/lista-processo-liberacao.2020.11.txt
 ```
 
 ## Tips
 
-You can combine the output with FZF
+You can combine the output with FZF or Peco
 
 ```
-./main.py old.txt new.txt | fzf
+./main.py --file lists/lista-processo-liberacao.2020.11.txt | sort | fzf
 ```
 
 ## License
