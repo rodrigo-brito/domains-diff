@@ -14,7 +14,7 @@ args = my_parser.parse_args()
 
 # setup keyword processor
 keywords = KeywordProcessor(case_sensitive=False)
-keywords.add_keyword_from_file("lists/keywords.txt")
+keywords.add_keyword_from_file(args.keywords)
 
 def count_vowels(sentence):
     count = 0
@@ -36,7 +36,7 @@ if args.old_file:
     domains = set(newDomains).difference(domains)
 
 for include in domains:
-    if ".com.br" in include:
-        prefix = include.replace(".com.br", "")
+    if ".com.br" in include or ".net.br" in include or ".app.br" in include:
+        prefix = include.replace(".com.br", "").replace(".net.br", "").replace(".app.br", "")
         if len(prefix) <= args.max_size and count_vowels(prefix) >= args.vowels and (not args.keywords or prefix in keywords):
             print(include)
