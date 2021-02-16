@@ -9,12 +9,13 @@ my_parser.add_argument('--file', action='store', default=0, type=str, required=T
 my_parser.add_argument('--old-file', action='store', type=str)
 my_parser.add_argument('--vowels', action='store', default=0, type=int)
 my_parser.add_argument('--max-size', action='store', default=10, type=int)
-my_parser.add_argument('--keywords', action='store', default="lists/keywords.txt", type=str)
+my_parser.add_argument('--keywords', action='store', type=str)
 args = my_parser.parse_args()
 
 # setup keyword processor
 keywords = KeywordProcessor(case_sensitive=False)
-keywords.add_keyword_from_file(args.keywords)
+if args.keywords:
+    keywords.add_keyword_from_file(args.keywords)
 
 def count_vowels(sentence):
     count = 0
