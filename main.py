@@ -9,13 +9,13 @@ my_parser.add_argument('--file', action='store', default=0, type=str, required=T
 my_parser.add_argument('--old-file', action='store', type=str)
 my_parser.add_argument('--vowels', action='store', default=0, type=int)
 my_parser.add_argument('--max-size', action='store', default=10, type=int)
-my_parser.add_argument('--keywords', action='store', type=str)
+my_parser.add_argument('--filter', action='store', type=str)
 args = my_parser.parse_args()
 
 # setup keyword processor
 keywords = KeywordProcessor(case_sensitive=False)
-if args.keywords:
-    keywords.add_keyword_from_file(args.keywords)
+if args.filter:
+    keywords.add_keyword_from_file(args.filter)
 
 def count_vowels(sentence):
     count = 0
@@ -39,5 +39,5 @@ if args.old_file:
 for include in domains:
     if ".com.br" in include or ".net.br" in include or ".app.br" in include:
         prefix = include.replace(".com.br", "").replace(".net.br", "").replace(".app.br", "")
-        if len(prefix) <= args.max_size and count_vowels(prefix) >= args.vowels and (not args.keywords or prefix in keywords):
+        if len(prefix) <= args.max_size and count_vowels(prefix) >= args.vowels and (not args.filter or prefix in keywords):
             print(include)
