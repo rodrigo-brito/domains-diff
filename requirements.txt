@@ -1,2 +1,2 @@
 flashtext==2.7
-requests==2.26.0
+requests==2.31.0
